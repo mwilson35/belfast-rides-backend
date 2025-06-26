@@ -1,0 +1,8 @@
+### Preview a ride
+POST http://localhost:5000/rides/preview
+Content-Type: application/json
+
+{
+  "pickupLocation": "Belfast, UK",
+  "destination": "Dublin, Ireland"
+}
