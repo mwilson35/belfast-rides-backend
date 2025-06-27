@@ -1,8 +1,15 @@
-### Preview a ride
-POST http://localhost:5000/rides/preview
-Content-Type: application/json
+### Upload profile photo using REST Client
+POST http://localhost:5000/api/documents/uploadDocument
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6InJpZGVyIiwidmVyaWZpZWQiOjAsImlhdCI6MTc1MTAzMjA3NiwiZXhwIjoxNzUxMDMyOTc2fQ.zR1GgTvkPRPpI8HsIe6hpHYS0dvnBRD0wimcycwtYuM
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
 
-{
-  "pickupLocation": "Belfast, UK",
-  "destination": "Dublin, Ireland"
-}
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="documentType"
+
+profilePhoto
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="document"; filename="accountDeleted.jpg"
+Content-Type: image/jpeg
+
+< C:/Users/TP COMPUTERS/OneDrive/Pictures/Screenshots/accountDeleted.jpg
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
