@@ -1,15 +1,2 @@
-### Upload profile photo using REST Client
-POST http://localhost:5000/api/documents/uploadDocument
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6InJpZGVyIiwidmVyaWZpZWQiOjAsImlhdCI6MTc1MTAzMjA3NiwiZXhwIjoxNzUxMDMyOTc2fQ.zR1GgTvkPRPpI8HsIe6hpHYS0dvnBRD0wimcycwtYuM
-Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
-
-------WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Disposition: form-data; name="documentType"
-
-profilePhoto
-------WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Disposition: form-data; name="document"; filename="accountDeleted.jpg"
-Content-Type: image/jpeg
-
-< C:/Users/TP COMPUTERS/OneDrive/Pictures/Screenshots/accountDeleted.jpg
-------WebKitFormBoundary7MA4YWxkTrZu0gW--
+GET http://192.168.33.3:5000/api/user/profile
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6InJpZGVyIiwidmVyaWZpZWQiOjAsImlhdCI6MTc1MTI5MjMxMiwiZXhwIjoxNzUxMjkzMjEyfQ.dcWvEfGV7Eqf01Q854UyHoyWUDn0D6MgIrLx6KuKTnk
