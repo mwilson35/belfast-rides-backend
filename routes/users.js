@@ -4,6 +4,26 @@ const router = express.Router();
 const db = require('../db');
 const { authenticateToken } = require('../middleware/middleware');
 
+
+router.put('/profile', authenticateToken, (req, res) => {
+  const userId = req.user.id;
+  const { username, email } = req.body;
+
+  if (!username || !email) {
+    return res.status(400).json({ message: 'Username and email are required' });
+  }
+
+  const query = 'UPDATE users SET username = ?, email = ? WHERE id = ?';
+  db.query(query, [username, email, userId], (err, results) => {
+    if (err) {
+      console.error('Profile update error:', err);
+      return res.status(500).json({ message: 'Failed to update profile' });
+    }
+    res.json({ message: 'Profile updated successfully' });
+  });
+});
+
+
 router.get('/profile', authenticateToken, (req, res) => {
   const userId = req.user.id;
   // Make sure the column name exactly matches the database.
