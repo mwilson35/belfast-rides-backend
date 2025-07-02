@@ -1,4 +1,3 @@
-### Request password reset for Mick
 POST http://localhost:5000/api/auth/request-password-reset
 Content-Type: application/json
 

@@ -156,6 +156,8 @@ router.post('/create-admin', authenticateToken, async (req, res) => {
   }
 });
 
+//password reset
+
 const crypto = require('crypto');
 
 router.post('/request-password-reset', (req, res) => {
@@ -183,6 +185,41 @@ router.post('/request-password-reset', (req, res) => {
       }
     );
   });
+});
+
+//password reset routing
+
+router.post('/reset-password', async (req, res) => {
+  const { token, newPassword } = req.body;
+  if (!token || !newPassword) {
+    return res.status(400).json({ message: 'Token and new password are required.' });
+  }
+
+  // 1. Fetch the token
+  db.query(
+    'SELECT user_id, expires_at FROM password_resets WHERE token = ?',
+    [token],
+    async (err, results) => {
+      if (err) return res.status(500).json({ message: 'Database error' });
+      if (results.length === 0) return res.status(400).json({ message: 'Invalid or expired token.' });
+
+      const { user_id, expires_at } = results[0];
+      if (new Date(expires_at) < new Date()) {
+        return res.status(400).json({ message: 'Token expired. Please request a new reset.' });
+      }
+
+      // 2. Hash and update the user's password
+      const hashed = await bcrypt.hash(newPassword, 10);
+      db.query('UPDATE users SET password = ? WHERE id = ?', [hashed, user_id], (uErr) => {
+        if (uErr) return res.status(500).json({ message: 'Could not update password.' });
+
+        // 3. Delete old tokens (so user can't replay it)
+        db.query('DELETE FROM password_resets WHERE user_id = ?', [user_id]);
+
+        return res.json({ message: 'Password has been reset successfully!' });
+      });
+    }
+  );
 });
 
 
