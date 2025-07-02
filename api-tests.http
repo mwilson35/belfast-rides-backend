@@ -1,2 +1,7 @@
-GET http://192.168.33.3:5000/api/user/profile
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6InJpZGVyIiwidmVyaWZpZWQiOjAsImlhdCI6MTc1MTI5MjMxMiwiZXhwIjoxNzUxMjkzMjEyfQ.dcWvEfGV7Eqf01Q854UyHoyWUDn0D6MgIrLx6KuKTnk
+### Request password reset for Mick
+POST http://localhost:5000/api/auth/request-password-reset
+Content-Type: application/json
+
+{
+  "email": "mick@123.com"
+}

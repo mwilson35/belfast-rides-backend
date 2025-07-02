@@ -156,4 +156,34 @@ router.post('/create-admin', authenticateToken, async (req, res) => {
   }
 });
 
+const crypto = require('crypto');
+
+router.post('/request-password-reset', (req, res) => {
+  const { email } = req.body;
+  if (!email) return res.status(400).json({ message: 'Email is required.' });
+
+  db.query('SELECT id FROM users WHERE email = ?', [email], (err, results) => {
+    if (err) return res.status(500).json({ message: 'Database error' });
+    if (results.length === 0) return res.status(404).json({ message: 'User not found' });
+
+    const userId = results[0].id;
+    const token = crypto.randomBytes(32).toString('hex');
+    const expiresAt = new Date(Date.now() + 30 * 60 * 1000); // 30 mins
+
+    db.query(
+      'INSERT INTO password_resets (user_id, token, expires_at) VALUES (?, ?, ?)',
+      [userId, token, expiresAt],
+      (insertErr) => {
+        if (insertErr) return res.status(500).json({ message: 'Token insert error' });
+
+        // Replace this with real email logic later
+        console.log(`Reset token for ${email}: http://yourfrontend.com/reset-password/${token}`);
+
+        res.json({ message: 'Password reset link has been sent (pretend email).' });
+      }
+    );
+  });
+});
+
+
 module.exports = router;
