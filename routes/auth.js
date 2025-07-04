@@ -3,6 +3,8 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const db = require('../db'); // <-- Adjust if needed
 const { authenticateToken } = require('../middleware/middleware'); // <-- Adjust if needed
+const { sendResetEmail } = require('../utils/email');
+
 
 const router = express.Router();
 
@@ -179,9 +181,17 @@ router.post('/request-password-reset', (req, res) => {
         if (insertErr) return res.status(500).json({ message: 'Token insert error' });
 
         // Replace this with real email logic later
-        console.log(`Reset token for ${email}: http://yourfrontend.com/reset-password/${token}`);
+const resetLink = `http://192.168.33.3:5500/index.html?token=${token}`;
 
-        res.json({ message: 'Password reset link has been sent (pretend email).' });
+sendResetEmail(email, resetLink)
+  .then(() => {
+    res.json({ message: 'Password reset link sent to email.' });
+  })
+  .catch((err) => {
+    console.error('Email error:', err.message);
+    res.status(500).json({ message: 'Failed to send reset email.' });
+  });
+
       }
     );
   });
