@@ -1,6 +1,7 @@
-POST http://localhost:5000/api/auth/request-password-reset
+POST http://192.168.33.3:5000/api/rides/accept
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjQsInJvbGUiOiJkcml2ZXIiLCJ2ZXJpZmllZCI6MSwiaWF0IjoxNzUxNzI4MTQ4LCJleHAiOjE3NTE3MjkwNDh9.CNRcJCgeWLaSACes4Okqq0TjXhVGcTWGTQKw3YBprCw
 Content-Type: application/json
 
 {
-  "email": "mick@123.com"
+  "rideId": 757
 }
