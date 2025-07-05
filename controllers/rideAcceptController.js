@@ -1,6 +1,6 @@
 const db = require('../db');
 
-exports.acceptRide = (req, res, io) => {
+exports.acceptRide = (req, res, io, riderSockets) => {
   const { rideId } = req.body;
   const driverId = req.user.id;
   console.log('🔥 acceptRide called by driver', driverId, 'for ride', rideId);
@@ -21,10 +21,32 @@ exports.acceptRide = (req, res, io) => {
         return res.status(404).json({ message: 'Ride not found or already accepted.' });
       }
 
-      console.log('✅ Ride accepted in DB:', rideId);
-      io.emit('driverAccepted', { rideId, driverId, message: 'Driver accepted the ride.' });
-      io.emit('removeRide', rideId);
-      return res.json({ message: 'Ride accepted successfully', rideId });
+      // Now get the rider ID
+      db.query('SELECT rider_id FROM rides WHERE id = ?', [rideId], (err, result) => {
+        if (err || result.length === 0) {
+          console.error('Error getting rider ID:', err);
+          return res.status(500).json({ message: 'Error retrieving rider info' });
+        }
+
+        const riderId = result[0].rider_id;
+        const riderSocketId = riderSockets.get(String(riderId));
+
+        if (riderSocketId) {
+          io.to(riderSocketId).emit('driverAccepted', {
+            rideId,
+            driverId,
+            message: 'Your driver has accepted the ride.',
+          });
+          console.log(`🎯 Emitted 'driverAccepted' to rider ${riderId}`);
+        } else {
+          console.log(`👻 No socket found for rider ${riderId}. Rider may be offline.`);
+        }
+
+        // Still OK to emit globally if needed, e.g. to remove ride from the available pool
+        io.emit('removeRide', rideId);
+
+        return res.json({ message: 'Ride accepted successfully', rideId });
+      });
     }
   );
 };
