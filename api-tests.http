@@ -1,8 +1,8 @@
-### Start Ride
-POST http://localhost:5000/api/rides/start
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjQsInJvbGUiOiJkcml2ZXIiLCJ2ZXJpZmllZCI6MSwiaWF0IjoxNzUxODA1NjQ0LCJleHAiOjE3NTE4MDY1NDR9.MB2QVRSsDtzZI1U5mk5AbMA6XLVRT3HAmV4J3bqVUkU
+### Complete Ride
+POST http://localhost:5000/api/rides/complete
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjQsInJvbGUiOiJkcml2ZXIiLCJ2ZXJpZmllZCI6MSwiaWF0IjoxNzUxODA2NTcyLCJleHAiOjE3NTE4MDc0NzJ9.Rf9Zr7PYdelubGjBTF4w1wj2Q55EL1Uv2VCl-j1CdkM
 Content-Type: application/json
 
 {
-  "rideId": 761
+  "rideId": 762
 }
