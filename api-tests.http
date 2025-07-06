@@ -1,8 +1,8 @@
-### Accept Ride
-POST http://localhost:5000/api/rides/accept
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjQsInJvbGUiOiJkcml2ZXIiLCJ2ZXJpZmllZCI6MSwiaWF0IjoxNzUxNzU1MjAwLCJleHAiOjE3NTE3NTYxMDB9.zl2sStDfxNj6jEscdZzVpDMe5jWVj09EpgKjEh5wGkE
+### Start Ride
+POST http://localhost:5000/api/rides/start
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjQsInJvbGUiOiJkcml2ZXIiLCJ2ZXJpZmllZCI6MSwiaWF0IjoxNzUxODA1NjQ0LCJleHAiOjE3NTE4MDY1NDR9.MB2QVRSsDtzZI1U5mk5AbMA6XLVRT3HAmV4J3bqVUkU
 Content-Type: application/json
 
 {
-  "rideId": 758
+  "rideId": 761
 }

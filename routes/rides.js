@@ -6,6 +6,8 @@ const { cancelRide } = require('../controllers/rideCancelController');
 const { getRideHistory } = require('../controllers/rideHistoryController');
 const { acceptRide } = require('../controllers/rideAcceptController');
 const { authenticateToken, verifyDriver } = require('../middleware/middleware');
+const { startRide } = require('../controllers/rideStartController');
+
 
 module.exports = (io, riderSockets) => {
   const router = express.Router();
@@ -17,6 +19,9 @@ module.exports = (io, riderSockets) => {
   router.post('/accept', authenticateToken, verifyDriver, (req, res) =>
     acceptRide(req, res, io, riderSockets)
   );
+router.post('/start', authenticateToken, verifyDriver, (req, res) =>
+  startRide(req, res, io, riderSockets)
+);
 
   router.post('/test-socket', (req, res) => {
     io.emit('driverAccepted', { rideId: 123, driverId: 999 });
