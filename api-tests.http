@@ -1,8 +1,7 @@
-### Complete Ride
 POST http://localhost:5000/api/rides/complete
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjQsInJvbGUiOiJkcml2ZXIiLCJ2ZXJpZmllZCI6MSwiaWF0IjoxNzUxODA2NTcyLCJleHAiOjE3NTE4MDc0NzJ9.Rf9Zr7PYdelubGjBTF4w1wj2Q55EL1Uv2VCl-j1CdkM
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjQsInJvbGUiOiJkcml2ZXIiLCJ2ZXJpZmllZCI6MSwiaWF0IjoxNzUxODk4MzAzLCJleHAiOjE3NTE4OTkyMDN9.QDcLpv4U1Q1aksgKROrGEi-FbgPx5vbv9sfi5fy0wLU
 
 {
-  "rideId": 762
+  "rideId": 768
 }
