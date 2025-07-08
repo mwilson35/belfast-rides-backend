@@ -1,11 +1,4 @@
-POST http://localhost:5000/ratings
-Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6InJpZGVyIiwidmVyaWZpZWQiOjAsImlhdCI6MTc1MTk3NTA4OCwiZXhwIjoxNzUxOTc1OTg4fQ.DYIldND1khBxde5a5WnvPDnR446K4hEGMcvKHua1T1o
-
-{
-  "rideId":770,
-  "rateeId": 24,
-  "rating": 5,
-  "review": "10/10. No backseat DJing. Would ride again.",
-  "tip": 3.00
-}
+curl -X POST http://192.168.33.3:5000/api/rides/complete \
+  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjQsInJvbGUiOiJkcml2ZXIiLCJ2ZXJpZmllZCI6MSwiaWF0IjoxNzUxOTc3NzU0LCJleHAiOjE3NTE5Nzg2NTR9.5Jz4dQGMeZ747ISzQ06-qx0Q8jgDFkt_djKtAvRqyWY" \
+  -H "Content-Type: application/json" \
+  -d '{"rideId": 771}'

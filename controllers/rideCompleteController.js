@@ -68,11 +68,13 @@ exports.completeRide = (req, res, io, riderSockets) => {
 
                 const riderSocketId = riderSockets.get(String(ride.rider_id));
                 if (riderSocketId) {
-                  io.to(riderSocketId).emit('rideCompleted', {
-                    rideId,
-                    fare,
-                    message: 'Your ride is complete',
-                  });
+io.to(riderSocketId).emit('rideCompleted', {
+  rideId,
+  fare,
+  driverId, // 👈 add this line
+  message: 'Your ride is complete',
+});
+
                   console.log(`🎯 Emitted 'rideCompleted' to rider ${ride.rider_id}`);
                 }
 
