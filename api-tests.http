@@ -1,9 +1,1 @@
-POST http://localhost:5000/api/slots
-Content-Type: application/json
-
-{
-  "driverId": 24,
-  "date": "2025-07-14",
-  "startTime": "09:00:00",
-  "endTime": "10:00:00"
-}
+GET http://localhost:5000/api/slots/available?date=2025-07-14
