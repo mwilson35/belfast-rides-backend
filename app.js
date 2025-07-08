@@ -37,6 +37,8 @@ const authRouter = require('./routes/auth');
 const mapsRouter = require('./routes/maps');
 const userDocumentsRouter = require('./routes/userDocuments');
 const userRoutes = require('./routes/users');
+const ratingsRouter = require('./routes/ratings');
+
 
 
 app.use('/api/auth', authRouter);
@@ -45,6 +47,8 @@ app.use('/api/maps', mapsRouter);
 app.use('/api/documents', userDocumentsRouter);
 app.use('/api/user', userRoutes);
 app.use('/earnings', require('./routes/earnings'));
+app.use('/ratings', ratingsRouter);
+
 
 
 const PORT = process.env.PORT || 5000;
