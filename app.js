@@ -38,6 +38,8 @@ const mapsRouter = require('./routes/maps');
 const userDocumentsRouter = require('./routes/userDocuments');
 const userRoutes = require('./routes/users');
 const ratingsRouter = require('./routes/ratings');
+const slotsRouter = require('./routes/slots');
+
 
 
 
@@ -48,6 +50,8 @@ app.use('/api/documents', userDocumentsRouter);
 app.use('/api/user', userRoutes);
 app.use('/earnings', require('./routes/earnings'));
 app.use('/ratings', ratingsRouter);
+app.use('/api/slots', slotsRouter);
+
 
 
 
